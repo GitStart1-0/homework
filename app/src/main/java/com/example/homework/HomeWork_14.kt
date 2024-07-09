@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class HomeWork_14 : AppCompatActivity() {
@@ -19,6 +20,11 @@ class HomeWork_14 : AppCompatActivity() {
         sendButton.setOnClickListener {
             val email = emailEditText.text.toString()
             val message = messageEditText.text.toString()
+
+            if (email.isNullOrEmpty() || message.isNullOrEmpty()) {
+                Toast.makeText(this, "Please enter both email and message", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
             val intent = Intent(Intent.ACTION_SENDTO).apply {
                 data = Uri.parse("mailto:")
